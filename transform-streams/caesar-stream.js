@@ -1,6 +1,6 @@
 import { Transform } from 'stream';
 
-import caesarCipher from '../ciphers/caesar-cipher.js';
+import cipher from '../ciphers/caesar-cipher.js';
 
 export default class CaesarStr extends Transform {
   constructor(action) {
@@ -11,7 +11,7 @@ export default class CaesarStr extends Transform {
 
   _transform(chunk, enc, cb) {
     try {
-      const cipherText = caesarCipher(
+      const cipherText = cipher(
         chunk.toString(),
         this.cipher,
         this.action,

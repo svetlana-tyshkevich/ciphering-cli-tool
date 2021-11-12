@@ -1,4 +1,4 @@
-const caesarCipher = (text, cipher, action) => {
+const cipher = (text, cipher, action) => {
     const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const alphabetLength = 26;
 
@@ -30,4 +30,4 @@ const caesarCipher = (text, cipher, action) => {
     );
 }
 
-export default caesarCipher;
+export default cipher;
