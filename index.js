@@ -1,10 +1,10 @@
 import fs from "fs";
 import { pipeline } from "stream";
-import CipherStr from './transform-streams/rot8-stream.js';
+import CipherStr from './transform-streams/atbash-stream.js';
 
 const readStr = fs.createReadStream('input.txt');
 const writeStr = fs.createWriteStream('output.txt');
-const cipherStr = new CipherStr(0);
+const cipherStr = new CipherStr();
 
 pipeline(readStr, cipherStr, writeStr, (error) => {
   if (error) {

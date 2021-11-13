@@ -7,8 +7,12 @@ const cipher = (text, cipher, action) => {
 
     const getCipherSymbol = (symbol, codeShift) => {
       const index = alphabet.indexOf(symbol);
-
       if (index < 0) return symbol;
+
+      if (cipher === 'atbash') return index < alphabetLength
+        ? alphabet[alphabetLength - index - 1]
+        : alphabet[alphabetLength * 3 - index - 1];
+
       else {
         const cipherSymbolIndex = (index + codeShift) % alphabetLength;
         if (index < alphabetLength) {
