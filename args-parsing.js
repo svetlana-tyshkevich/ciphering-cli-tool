@@ -1,21 +1,43 @@
+import fs from 'fs';
+
 const args = process.argv;
 const options = {};
 if (args.length > 0) {
   const userArgs = args.slice(2);
-  options.config =
-    userArgs[
-      userArgs.findIndex((item) => item === '-c' || item === '--config') + 1
-    ];
+  const configIndex = userArgs.findIndex(
+    (item) => item === '-c' || item === '--config',
+  );
+  const inputIndex = userArgs.findIndex(
+    (item) => item === '-i' || item === '--input',
+  );
+  const outputIndex = userArgs.findIndex(
+    (item) => item === '-o' || item === '--output',
+  );
 
-  options.inputPath =
-    userArgs[
-      userArgs.findIndex((item) => item === '-i' || item === '--input') + 1
-    ];
+  if (configIndex >= 0) {
+    options.config = userArgs[configIndex + 1];
+  } else {
+    process.stderr.write('Error! Config is a required argument.');
+    process.exit(1);
+  }
 
-  options.outputPath =
-    userArgs[
-      userArgs.findIndex((item) => item === '-o' || item === '--output') + 1
-    ];
+  if (inputIndex >= 0) {
+    if (fs.existsSync(userArgs[inputIndex + 1])) {
+      options.inputPath = userArgs[inputIndex + 1];
+    } else {
+      process.stderr.write('Error! Input file path is not correct.');
+      process.exit(1);
+    }
+  }
+
+  if (outputIndex >= 0) {
+    if (fs.existsSync(userArgs[outputIndex + 1])) {
+      options.outputPath = userArgs[outputIndex + 1];
+    } else {
+      process.stderr.write('Error! Output file path is not correct.');
+      process.exit(1);
+    }
+  }
 }
 
 export default options;
