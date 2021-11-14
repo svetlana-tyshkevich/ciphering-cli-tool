@@ -1,6 +1,7 @@
 import AtbashStr from './transform-streams/atbash-stream.js';
 import CaesarStr from './transform-streams/caesar-stream.js';
 import Rot8Str from './transform-streams/rot8-stream.js';
+import options from './args-parsing.js';
 
 const parseArgs = (cipherCode) => {
   if (cipherCode.length === 1 && cipherCode[0] === 'A') return new AtbashStr();
@@ -10,7 +11,7 @@ const parseArgs = (cipherCode) => {
   }
 };
 
-const config = 'A-A-A-R1-R0-R0-R0-C1-C1-A';
+const config = options.config;
 const transforms = config
   .split('-')
   .map((item) => item.split(''))
