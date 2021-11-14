@@ -5,12 +5,12 @@ import options from './args-parsing.js';
 
 const parseArgs = (cipherCode) => {
   if (cipherCode[0] === 'A') {
-    if (cipherCode.length === 1)  return new AtbashStr()
+    if (cipherCode.length === 1) return new AtbashStr();
     else {
-       process.stderr.write("Error! Atbash cipher argument is incorrect.");
-       process.exit(1);
+      process.stderr.write('Error! Atbash cipher argument is incorrect.');
+      process.exit(1);
     }
-  } 
+  }
 
   if (cipherCode[0] === 'C') {
     if (
@@ -23,7 +23,7 @@ const parseArgs = (cipherCode) => {
       process.exit(1);
     }
   }
-  
+
   if (cipherCode[0] === 'R') {
     if (
       cipherCode.length === 2 &&
@@ -34,9 +34,7 @@ const parseArgs = (cipherCode) => {
       process.stderr.write('Error! Rot-8 cipher argument is incorrect.');
       process.exit(1);
     }
-  }
-  
-  else {
+  } else {
     process.stderr.write(
       `Error! Cipher argument ${cipherCode[0]} is incorrect.`,
     );
@@ -46,11 +44,12 @@ const parseArgs = (cipherCode) => {
 
 const config = options.config;
 
-if (config.split('-').forEach(item => ['C1', 'C0', 'R1', 'R0', 'A'].includes(item))) {
-  process.stderr.write('Error! Config format is incorrect.');
-  process.exit(1);
-}
-
+config.split('-').forEach((item) => {
+  if (!item.match(/^[A-Z0-9]{1,2}$/)) {
+    process.stderr.write('Error! Config format is incorrect.');
+    process.exit(1);
+  }
+});
 
 const transforms = config
   .split('-')

@@ -26,10 +26,13 @@ const cipher = (text, cipher, action) => {
     }
   };
 
-  return text
-    .split('')
-    .map((item) => getCipherSymbol(item, codeShift))
-    .join('');
+  return (
+    text
+      .trim()
+      .split('')
+      .map((item) => getCipherSymbol(item, codeShift))
+      .join('') + '\n'
+  );
 };
 
 export default cipher;
