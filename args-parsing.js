@@ -14,6 +14,29 @@ if (args.length > 0) {
     (item) => item === '-o' || item === '--output',
   );
 
+  //check for duplicates
+  if (
+    userArgs.filter((item) => item === '-c' || item === '--config').length > 1
+  ) {
+    process.stderr.write("Error! Don't duplicate config argument.");
+    process.exit(1);
+  }
+  
+  if (
+    userArgs.filter((item) => iitem === '-i' || item === '--input').length > 1
+  ) {
+    process.stderr.write("Error! Don't duplicate input argument.");
+    process.exit(1);
+  }
+
+  if (
+    userArgs.filter((item) => item === '-o' || item === '--output').length > 1
+  ) {
+    process.stderr.write("Error! Don't duplicate output argument.");
+    process.exit(1);
+  }
+
+  //setting options
   if (configIndex >= 0) {
     options.config = userArgs[configIndex + 1];
   } else {
