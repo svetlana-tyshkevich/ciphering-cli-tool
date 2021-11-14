@@ -1,6 +1,6 @@
 import { Transform } from 'stream';
 
-import cipher from '../ciphers/caesar-cipher.js';
+import cipher from '../ciphers/cipher.js';
 
 export default class AtbashStr extends Transform {
   constructor() {

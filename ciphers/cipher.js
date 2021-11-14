@@ -3,7 +3,7 @@ const cipher = (text, cipher, action) => {
     const alphabetLength = 26;
 
     const shift = cipher === 'caesar' ? 1 : 8;
-    const codeShift = action === 1 ? shift : shift * -1;
+    const codeShift = action === '1' ? shift : shift * -1;
 
     const getCipherSymbol = (symbol, codeShift) => {
       const index = alphabet.indexOf(symbol);
@@ -25,7 +25,7 @@ const cipher = (text, cipher, action) => {
             : alphabet[2 * alphabetLength + cipherSymbolIndex];
       }
     };
-
+    
     return (
       text
         .split('')
