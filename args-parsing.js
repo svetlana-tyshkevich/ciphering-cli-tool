@@ -23,7 +23,7 @@ if (args.length > 0) {
   }
   
   if (
-    userArgs.filter((item) => iitem === '-i' || item === '--input').length > 1
+    userArgs.filter((item) => item === '-i' || item === '--input').length > 1
   ) {
     process.stderr.write("Error! Don't duplicate input argument.");
     process.exit(1);
