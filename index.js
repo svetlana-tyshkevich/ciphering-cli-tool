@@ -1,8 +1,8 @@
 import { pipeline } from 'stream';
-import transforms from './config.js';
-import options from './args-parsing.js';
-import MyReadable from './readable-stream.js';
-import MyWritable from './writable-stream.js';
+import transforms from './src/config.js';
+import options from './src/args-parsing.js';
+import MyReadable from './src/readable-stream.js';
+import MyWritable from './src/writable-stream.js';
 
 const readStr = options.inputPath
   ? new MyReadable(options.inputPath, 'utf8')
