@@ -1,0 +1,4 @@
+const ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const ALPHABET_LENGTH = 26;
+
+export { ALPHABET, ALPHABET_LENGTH };

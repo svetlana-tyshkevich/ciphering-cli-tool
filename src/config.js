@@ -1,6 +1,4 @@
-import AtbashStr from './transform-streams/atbash-stream.js';
-import CaesarStr from './transform-streams/caesar-stream.js';
-import Rot8Str from './transform-streams/rot8-stream.js';
+import { AtbashStr, CaesarStr, Rot8Str } from './transform-streams/index.js';
 import options from './args-parsing.js';
 
 const parseArgs = (cipherCode) => {
@@ -51,9 +49,12 @@ config.split('-').forEach((item) => {
   }
 });
 
-const transforms = config
-  .split('-')
-  .map((item) => item.split(''))
-  .map((item) => parseArgs(item));
+const getStreams = (string) =>
+  string
+    .split('-')
+    .map((item) => item.split(''))
+    .map((item) => parseArgs(item));
 
-export default transforms;
+const transforms = getStreams(config);
+
+export { transforms, getStreams, parseArgs };

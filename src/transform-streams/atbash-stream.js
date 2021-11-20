@@ -2,7 +2,7 @@ import { Transform } from 'stream';
 
 import cipher from '../ciphers/cipher.js';
 
-export default class AtbashStr extends Transform {
+class AtbashStr extends Transform {
   constructor() {
     super();
     this.cipher = 'atbash';
@@ -17,3 +17,5 @@ export default class AtbashStr extends Transform {
     }
   }
 }
+
+export default AtbashStr;

@@ -1,28 +1,18 @@
-const cipher = (text, cipher, action) => {
-  const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const alphabetLength = 26;
+import atbashCipher from './atbash.js';
+import caesarCipher from './caesar.js';
 
-  const shift = cipher === 'caesar' ? 1 : 8;
-  const codeShift = action === '1' ? shift : shift * -1;
+const cipher = (text, cipherName, action) => {
+  const getCipherSymbol = (symbol, cipherName, action) => {
+    switch (cipherName) {
+      case 'atbash':
+        return atbashCipher(symbol);
+      case 'caesar':
+        return caesarCipher(symbol, 'caesar', action);
+      case 'rot8':
+        return caesarCipher(symbol, 'rot8', action);
 
-  const getCipherSymbol = (symbol, codeShift) => {
-    const index = alphabet.indexOf(symbol);
-    if (index < 0) return symbol;
-
-    if (cipher === 'atbash')
-      return index < alphabetLength
-        ? alphabet[alphabetLength - index - 1]
-        : alphabet[alphabetLength * 3 - index - 1];
-    else {
-      const cipherSymbolIndex = (index + codeShift) % alphabetLength;
-      if (index < alphabetLength) {
-        return cipherSymbolIndex >= 0
-          ? alphabet[cipherSymbolIndex]
-          : alphabet[alphabetLength + cipherSymbolIndex];
-      } else
-        return cipherSymbolIndex >= 0
-          ? alphabet[cipherSymbolIndex + alphabetLength]
-          : alphabet[2 * alphabetLength + cipherSymbolIndex];
+      default:
+        break;
     }
   };
 
@@ -30,7 +20,7 @@ const cipher = (text, cipher, action) => {
     text
       .trim()
       .split('')
-      .map((item) => getCipherSymbol(item, codeShift))
+      .map((symbol) => getCipherSymbol(symbol, cipherName, action))
       .join('') + '\n'
   );
 };
