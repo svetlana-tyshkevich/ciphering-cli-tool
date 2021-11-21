@@ -1,6 +1,8 @@
 import { getStreams } from './get-streams.js';
-import options from './args-parsing.js';
+import { setOptions } from './args-parsing.js';
 
+const cliArgs = process.argv;
+const options = setOptions(cliArgs);
 const config = options.config;
 
 config.split('-').forEach((item) => {
@@ -12,4 +14,4 @@ config.split('-').forEach((item) => {
 
 const transforms = getStreams(config);
 
-export { transforms};
+export { transforms, options };

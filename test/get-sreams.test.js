@@ -6,7 +6,7 @@ test('length of array must be 3', () => {
   expect(getStreams(string).length).toBe(3);
 });
 
-test('incorrect config must return proccess exit', () => {
+test('incorrect config must return process exit', () => {
     const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
   const string = 'C1-C0-A2';
   getStreams(string);

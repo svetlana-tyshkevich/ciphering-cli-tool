@@ -1,6 +1,6 @@
 import { pipeline } from 'stream';
 import {transforms} from './src/config.js';
-import options from './src/args-parsing.js';
+import { options } from './src/config.js';
 import MyReadable from './src/readable-stream.js';
 import MyWritable from './src/writable-stream.js';
 
