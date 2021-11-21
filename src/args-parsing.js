@@ -39,6 +39,12 @@ const setOptions = (args) => {
 
     //setting options
     if (configIndex >= 0) {
+      userArgs[configIndex + 1].split('-').forEach((item) => {
+        if (!item.match(/^[A-Z0-9]{1,2}$/)) {
+          process.stderr.write('Error! Config format is incorrect.');
+          process.exit(1);
+        }
+      });
       options.config = userArgs[configIndex + 1];
     } else {
       process.stderr.write('Error! Config is a required argument.');

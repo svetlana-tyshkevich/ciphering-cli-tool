@@ -2,7 +2,7 @@ import { setOptions } from '../src/args-parsing';
 const ERROR_CODE = 1;
 
 beforeEach(() => {
-    jest.clearAllMocks();
+  jest.clearAllMocks();
 });
 describe('User passes the same cli argument twice ', () => {
   test('double argument - exit check', () => {
@@ -51,41 +51,41 @@ describe('User passes the same cli argument twice ', () => {
 });
 
 describe('User doesnt pass -c or --config argument', () => {
-    test('absent config argument - exit check', () => {
-      const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
-      const args = [
-        'node',
-        'index.js',
-        '-i',
-        './input.txt',
-        '-o',
-        './output.txt',
-      ];
+  test('absent config argument - exit check', () => {
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+    const args = [
+      'node',
+      'index.js',
+      '-i',
+      './input.txt',
+      '-o',
+      './output.txt',
+    ];
 
-      setOptions(args);
-      expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
-    });
+    setOptions(args);
+    expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+  });
 
-    test('absent config argument - error message check', () => {
-      const mockStderr = jest
-        .spyOn(process.stderr, 'write')
-        .mockImplementation(() => {});
+  test('absent config argument - error message check', () => {
+    const mockStderr = jest
+      .spyOn(process.stderr, 'write')
+      .mockImplementation(() => {});
 
-      const args = [
-        'node',
-        'index.js',
-        '-i',
-        './input.txt',
-        '-o',
-        './output.txt',
-      ];
+    const args = [
+      'node',
+      'index.js',
+      '-i',
+      './input.txt',
+      '-o',
+      './output.txt',
+    ];
 
-      setOptions(args);
+    setOptions(args);
 
-      expect(mockStderr).toHaveBeenCalledWith(
-        'Error! Config is a required argument.',
-      );
-    });
+    expect(mockStderr).toHaveBeenCalledWith(
+      'Error! Config is a required argument.',
+    );
+  });
 });
 
 describe('User passes -i argument with path that doesnt exist or with no read access', () => {
@@ -176,3 +176,10 @@ describe('User passes -o argument with path to directory that doesnt exist or wi
   });
 });
 
+describe('User passes correct sequence of symbols as argument for --config that matches regular expression', () => {
+  const args = ['node', 'index.js', '-c', 'C1-C1-R0-A'];
+
+  const options = setOptions(args);
+
+  expect(options).toEqual({ config: 'C1-C1-R0-A' });
+});
