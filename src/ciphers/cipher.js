@@ -11,8 +11,6 @@ const cipher = (text, cipherName, action) => {
       case 'rot8':
         return caesarCipher(symbol, 'rot8', action);
 
-      default:
-        break;
     }
   };
 
