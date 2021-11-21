@@ -25,6 +25,24 @@ test('incorrect encode arg must return error message', () => {
   );
 });
 
+describe('User passes incorrect encode/decode argument for --config', () => {});
+test('incorrect encode arg return process exit', () => {
+  const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+  const arg = 'R';
+  parseArgs(arg);
+  expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
+});
+
+test('incorrect encode arg must return error message', () => {
+  const mockStderr = jest
+    .spyOn(process.stderr, 'write')
+    .mockImplementation(() => {});
+  const arg = 'R';
+  parseArgs(arg);
+  expect(mockStderr).toHaveBeenCalledWith(
+    'Error! Rot-8 cipher argument is incorrect.',
+  );
+});
 describe('User passes incorrect symbols in argument for --config', () => {
   test('incorrect config code - exit check', () => {
     const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});

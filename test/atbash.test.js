@@ -9,3 +9,8 @@ test('should return atbash encrypted upperCase symbol', () => {
   const symbol = 'A';
   expect(atbashCipher(symbol)).toBe('Z');
 });
+
+test('should return original', () => {
+  const symbol = 'Ы';
+  expect(atbashCipher(symbol)).toBe('Ы');
+});
