@@ -1,7 +1,4 @@
-import AtbashStr from './transform-streams/atbash-stream.js';
-import CaesarStr from './transform-streams/caesar-stream.js';
-import Rot8Str from './transform-streams/rot8-stream.js';
-import options from './args-parsing.js';
+import { AtbashStr, CaesarStr, Rot8Str } from './transform-streams/index.js';
 
 const parseArgs = (cipherCode) => {
   if (cipherCode[0] === 'A') {
@@ -42,18 +39,4 @@ const parseArgs = (cipherCode) => {
   }
 };
 
-const config = options.config;
-
-config.split('-').forEach((item) => {
-  if (!item.match(/^[A-Z0-9]{1,2}$/)) {
-    process.stderr.write('Error! Config format is incorrect.');
-    process.exit(1);
-  }
-});
-
-const transforms = config
-  .split('-')
-  .map((item) => item.split(''))
-  .map((item) => parseArgs(item));
-
-export default transforms;
+export { parseArgs };
